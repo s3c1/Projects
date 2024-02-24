@@ -10,9 +10,9 @@
             text-align: center;
             margin: 50px;
             background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzvdFqu0O1c5fW0nyf1iIxW-d5_oHiJzafGw&usqp=CAU); /* Replace with your image URL */
-            background-size: 1500px 750px;
+            background-size: 1000px 600px;
             background-position: center;
-            color: white;
+            color: black;
         }
 
         h1 {
@@ -113,12 +113,30 @@
                 "Quadruped Leg Lifts",
                 // Add more exercises as needed
             ];
+// List of sets and reps
+            var seriesRepetitions = [
+                { Sets: 3, Reps: 15 },
+                { Sets: 3, Reps: 10 },
+                { Sets: 4, Reps: 12 },
+                { Sets: 3, Reps: 8 },
+                { Sets: 3, Reps: 30 },
+                { Sets: 4, Reps: 10 },
+                // Add more sets and reps as needed
+            ];
+            
+            // Generate a random index for exercises
+            var randomIndexExercises = Math.floor(Math.random() * exercises.length);
+            // Generate a random index for sets and reps
+            var randomIndexSeriesRepetitions = Math.floor(Math.random() * seriesRepetitions.length);
 
-            // Generate a random index
-            var randomIndex = Math.floor(Math.random() * exercises.length);
+            // Get the randomly selected exercise, sets, and reps
+            var randomExercise = exercises[randomIndexExercises];
+            var randomSetsReps = seriesRepetitions[randomIndexSeriesRepetitions];
 
-            // Display the randomly selected exercise
-            document.getElementById("exerciseDisplay").innerHTML = "Exercise: " + exercises[randomIndex];
+            // Display the randomly selected exercise, sets, and reps
+            document.getElementById("exerciseDisplay").innerHTML = "Exercise: " + randomExercise +
+                "<br>Sets: " + randomSetsReps.Sets +
+                "<br>Reps: " + randomSetsReps.Reps;
         }
     </script>
 </body>
