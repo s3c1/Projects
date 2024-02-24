@@ -1,0 +1,200 @@
+<html>
+<head>
+    <title>RRSP Contribution Calculator</title>
+    <style>
+        /* Add your CSS code here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333333;
+        }
+
+        form {
+            width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #cccccc;
+            background-color: #ffffff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #333333;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+
+        #result {
+            display: none;
+            width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #cccccc;
+            background-color: #ffffff;
+        }
+
+        #result p {
+            margin: 0;
+            font-weight: bold;
+        }
+
+        #result span {
+            color: #333333;
+        }
+    </style>
+</head>
+<body>
+    <h1>RRSP Contribution Calculator</h1>
+    <form id="calculator">
+        <label for="province">Province of residence</label>
+        <input type="text" id="province" name="province" placeholder="Enter your province" required>
+        <label for="income">Employment income</label>
+        <input type="number" id="income" name="income" placeholder="Enter your income" min="0" required>
+        <label for="taxes">Income taxes paid (Federal)</label>
+        <input type="number" id="taxes" name="taxes" placeholder="Enter your taxes" min="0" required>
+        <label for="other">Other income (incl. CERB)</label>
+        <input type="number" id="other" name="other" placeholder="Enter your other income" min="0" required>
+        <label for="contribution">RRSP contribution</label>
+        <input type="number" id="contribution" name="contribution" placeholder="Enter your contribution" min="0" required>
+        <button type="submit" id="submit">Calculate</button>
+    </form>
+    <div id="result">
+        <p>Estimated amount: <span id="amount"></span></p>
+        <p>Federal and Provincial tax brackets: <span id="brackets"></span></p>
+    </div>
+    <script>
+        // Add your JavaScript code here
+        // Get the elements from the document
+        var form = document.getElementById("calculator");
+        var province = document.getElementById("province");
+        var income = document.getElementById("income");
+        var taxes = document.getElementById("taxes");
+        var other = document.getElementById("other");
+        var contribution = document.getElementById("contribution");
+        var submit = document.getElementById("submit");
+        var result = document.getElementById("result");
+        var amount = document.getElementById("amount");
+        var brackets = document.getElementById("brackets");
+
+        // Define the URL of the tax table
+        var url = "https://www.bing.com/th?id=OIP.08WVuM3AGm_uwIbX2UlqlwHaEZ";
+
+        // Define a function to fetch the tax table from the URL
+        function fetchTaxTable(url, callback) {
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+            // Open a GET request to the URL
+            xhr.open("GET", url, true);
+            // Set the response type to JSON
+            xhr.responseType = "json";
+            // Define what to do when the request is successful
+            xhr.onload = function() {
+                // Check if the status is 200 (OK)
+                if (xhr.status == 200) {
+                    // Call the callback function with the response data
+                    callback(xhr.response);
+                } else {
+                    // Display an error message
+                    alert("Error: " + xhr.statusText);
+                }
+            };
+            // Define what to do when the request fails
+            xhr.onerror = function() {
+                // Display an error message
+                alert("Error: " + xhr.statusText);
+            };
+            // Send the request
+            xhr.send();
+        }
+
+        // Define a function to calculate the optimal RRSP contribution
+        function calculateRRSP(province, income, taxes, other, contribution, taxTable) {
+            // Calculate the taxable income before and after the contribution
+            var taxableIncomeBefore = income + other - contribution;
+            var taxableIncomeAfter = income + other;
+            // Calculate the federal and provincial tax rates before and after the contribution
+            var federalTaxRateBefore = taxTable.federal[taxableIncomeBefore];
+            var federalTaxRateAfter = taxTable.federal[taxableIncomeAfter];
+            var provincialTaxRateBefore = taxTable[province][taxableIncomeBefore];
+            var provincialTaxRateAfter = taxTable[province][taxableIncomeAfter];
+            // Calculate the total tax rate before and after the contribution
+            var totalTaxRateBefore = federalTaxRateBefore + provincialTaxRateBefore;
+            var totalTaxRateAfter = federalTaxRateAfter + provincialTaxRateAfter;
+            // Calculate the tax savings from the contribution
+            var taxSavings = contribution * (totalTaxRateAfter - totalTaxRateBefore);
+            // Calculate the estimated amount of the RRSP after the contribution
+            var estimatedAmount = contribution + taxSavings;
+            // Return the estimated amount and the tax brackets
+            return {
+                estimatedAmount: estimatedAmount,
+                taxBrackets: {
+                    federalTaxBracketBefore: taxTable.federal_brackets[taxableIncomeBefore],
+                    federalTaxBracketAfter: taxTable.federal_brackets[taxableIncomeAfter],
+                    provincialTaxBracketBefore: taxTable[province + "_brackets"][taxableIncomeBefore],
+                    provincialTaxBracketAfter: taxTable[province + "_brackets"][taxableIncomeAfter]
+                }
+            };
+        }
+
+        // Define a function to format the result and display it on the web page
+        function displayResult(result) {
+            // Format the estimated amount with two decimal places and a dollar sign
+            var formattedAmount = "$" + result.estimatedAmount.toFixed(2);
+            // Format the tax brackets with percentage signs
+            var formattedBrackets = "Federal: " + result.taxBrackets.federalTaxBracketBefore + "% to " + result.taxBrackets.federalTaxBracketAfter + "%, Provincial: " + result.taxBrackets.provincialTaxBracketBefore + "% to " + result.taxBrackets.provincialTaxBracketAfter + "%";
+            // Set the text content of the result elements
+            amount.textContent = formattedAmount;
+            brackets.textContent = formattedBrackets;
+            // Show the result element
+            result.style.display = "block";
+        }
+
+        // Define a function to handle the form submission
+        function handleSubmit(event) {
+            // Prevent the default behavior of the form
+            event.preventDefault();
+            // Get the values from the input fields
+            var provinceValue = province.value;
+            var incomeValue = Number(income.value);
+            var taxesValue = Number(taxes.value);
+            var otherValue = Number(other.value);
+            var contributionValue = Number(contribution.value);
+            // Validate the input values
+            if (provinceValue == "" || isNaN(incomeValue) || isNaN(taxesValue) || isNaN(otherValue) || isNaN(contributionValue)) {
+                // Display an error message
+                alert("Please enter valid values");
+            } else {
+                // Fetch the tax table from the URL
+                fetchTaxTable(url, function(taxTable) {
+                    // Calculate the optimal RRSP contribution
+                    var result = calculateRRSP(provinceValue, incomeValue, taxesValue, otherValue, contributionValue, taxTable);
+                    // Display the result
+                    displayResult(result);
+                });
+            }
+        }
+
+        // Add an event listener to the submit button
+        submit.addEventListener("click", handleSubmit);
+    </script>
+</body>
+</html>
