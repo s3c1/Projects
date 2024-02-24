@@ -12,8 +12,25 @@
             padding: 0;
             color: black;
             overflow: hidden;
-        }     
-        
+        }
+
+        /* Style the top section */
+        #topSection {
+            height: 20%; /* Set the height to 20% of the viewport */
+            width: 100%; /* Set the width to 100% of the viewport */
+            background-color: black; /* Set the background color to black */
+        }
+
+        /* Style the bottom section */
+        #bottomSection {
+            height: 80%; /* Set the height to 80% of the viewport */
+            width: 100%; /* Set the width to 100% of the viewport */
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzvdFqu0O1c5fW0nyf1iIxW-d5_oHiJzafGw&usqp=CAU); /* Set the background image */
+            background-size: contain; /* Scale the image to fit the section */
+            background-position: center; /* Center the image */
+            background-attachment: fixed; /* Fix the image position */
+        }
+
         h1 {
             color: #ffffff; /* White text for better visibility */
             margin-top: 10vh; /* 10% from the top */
@@ -42,23 +59,8 @@
 <body>
     <!-- Create the top section -->
     <div id="topSection"></div>
-        /* Style the top section */
-            #topSection {
-                height: 20%; /* Set the height to 20% of the viewport */
-                width: 100%; /* Set the width to 100% of the viewport */
-                background-color: black; /* Set the background color to black */
-        }
     <!-- Create the bottom section -->
     <div id="bottomSection">
-        /* Style the bottom section */
-        #bottomSection {
-            height: 80%; /* Set the height to 80% of the viewport */
-            width: 100%; /* Set the width to 100% of the viewport */
-            background-image: url(https://m.media-amazon.com/images/I/31rHE7N3vuL._AC_UF1000,1000_QL80_.jpg alt="quote"); /* Set the background image */
-            background-size: contain; /* Scale the image to fit the section */
-            background-position: center; /* Center the image */
-            background-attachment: fixed; /* Fix the image position */
-        }
         <h1>Today's Workout</h1>
         <button onclick="generateExercise()">Let's Work</button>
         <p id="exerciseDisplay"></p>
