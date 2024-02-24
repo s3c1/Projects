@@ -33,6 +33,13 @@
             border: 1px solid #cccccc;
         }
 
+        select {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+        }
+
         button {
             display: block;
             width: 100%;
@@ -66,7 +73,21 @@
     <h1>RRSP Contribution Calculator</h1>
     <form id="calculator">
         <label for="province">Province of residence</label>
-        <input type="text" id="province" name="province" placeholder="Enter your province" required>
+        <select name="province" id="province" required>
+            <option value="AB">Alberta</option>
+            <option value="BC">British Columbia</option>
+            <option value="MB">Manitoba</option>
+            <option value="NB">New Brunswick</option>
+            <option value="NL">Newfoundland and Labrador</option>
+            <option value="NS">Nova Scotia</option>
+            <option value="NT">Northwest Territories</option>
+            <option value="NU">Nunavut</option>
+            <option value="ON">Ontario</option>
+            <option value="PE">Prince Edward Island</option>
+            <option value="QC">Quebec</option>
+            <option value="SK">Saskatchewan</option>
+            <option value="YT">Yukon</option>
+        </select>
         <label for="income">Employment income</label>
         <input type="number" id="income" name="income" placeholder="Enter your income" min="0" required>
         <label for="taxes">Income taxes paid (Federal)</label>
