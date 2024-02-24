@@ -10,15 +10,21 @@
             text-align: center;
             margin: 0;
             padding: 0;
+            color: black;
+            overflow: hidden;
+        }
+
+        #backgroundContainer {
+            height: 70vh; /* 70% of the viewport height */
             background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzvdFqu0O1c5fW0nyf1iIxW-d5_oHiJzafGw&usqp=CAU);
             background-size: cover;
-            background-position: center;
+            background-position: center bottom; /* Centered at the bottom */
             background-attachment: fixed;
-            color: black;
         }
 
         h1 {
             color: #ffffff; /* White text for better visibility */
+            margin-top: 10vh; /* 10% from the top */
         }
 
         button {
@@ -42,6 +48,7 @@
     </style>
 </head>
 <body>
+    <div id="backgroundContainer"></div>
     <h1>Today's Workout</h1>
     
     <button onclick="generateExercise()">Let's Work</button>
