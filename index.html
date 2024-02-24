@@ -14,26 +14,17 @@
             overflow: hidden;
         }
 
-        /* Style the top section */
-        #topSection {
-            height: 20%;
-            width: 100%;
-            background-color: black;
-        }
-
-        /* Style the bottom section */
-        #bottomSection {
-            height: 80%;
-            width: 100%;
-            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzvdFqu0O1c5fW0nyf1iIxW-d5_oHiJzafGw&usqp=CAU alt="a quote that says "Nobody Cares. Work Harder."");
+        #backgroundContainer {
+            height: 70vh; /* 70% of the viewport height */
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzvdFqu0O1c5fW0nyf1iIxW-d5_oHiJzafGw&usqp=CAU);
             background-size: cover;
-            background-position: center;
+            background-position: center bottom; /* Centered at the bottom */
             background-attachment: fixed;
         }
 
         h1 {
             color: #ffffff; /* White text for better visibility */
-            margin-top: 10vh;
+            margin-top: 10vh; /* 10% from the top */
         }
 
         button {
@@ -57,11 +48,7 @@
     </style>
 </head>
 <body>
-    <!-- Create the top section -->
-    <div id="topSection"></div>
-    <!-- Create the bottom section -->
-    <div id="bottomSection"></div>
-
+    <div id="backgroundContainer"></div>
     <h1>Today's Workout</h1>
     
     <button onclick="generateExercise()">Let's Work</button>
@@ -72,11 +59,78 @@
         function generateExercise() {
             // List of exercises
             var exercises = [
-                // ... (unchanged)
+                "Push-ups",
+                "Pull-ups",
+                "Squats",
+                "Deadlifts",
+                "Plank",
+                "Lunges",
+                "Leg Curl",
+                "Leg Extension",
+                "Biceps Curl",
+                "Chest Press", // Replaced "Dips" with "Chest Press"
+                "Tricep Dips",
+                "Pull-ups (if you have a sturdy horizontal bar)",
+                "Diamond Push-ups",
+                "Wide Grip Push-ups",
+                "Plank to Pike",
+                "Spider-Man Push-ups",
+                "Tricep Push-ups",
+                "Clapping Push-ups",
+                "Wall Push-offs",
+                "Bodyweight Squats",
+                "Lunges",
+                "Jump Squats",
+                "Single-Leg Glute Bridge",
+                "Jumping Jacks",
+                "Side Lunges",
+                "Frog Jumps",
+                "Hindu Squats",
+                "Walking Lunges",
+                "Pendulum Lunges",
+                "Plank",
+                "Plank to Pike",
+                "Mountain Climbers",
+                "Burpees",
+                "Bicycle Crunches",
+                "Superman Exercise",
+                "Russian Twists",
+                "Side Plank",
+                "Plank with Shoulder Taps",
+                "Sit-ups",
+                "Flutter Kicks",
+                "Standing Oblique Crunches",
+                "Bodyweight Rows (using a sturdy table or edge of a bed)",
+                "Reverse Snow Angels (lying on your stomach, lift arms and legs)",
+                "Burpees",
+                "Crab Walk",
+                "Bear Crawls",
+                "High Knees",
+                "Boxer Shuffle",
+                "Jumping in Place",
+                "Leg Raises",
+                "Calf Raises",
+                "Donkey Kicks",
+                "Tuck Jumps",
+                "Side-to-Side Push-ups",
+                "Jumping on the Spot",
+                "Jump Lunges",
+                "Spider-Man Push-ups",
+                "Frog Jumps",
+                "Jumping in Place",
+                "Tricep Dips (using the edge of a sturdy chair)",
+                "Quadruped Leg Lifts",
+                // Add more exercises as needed
             ];
             // List of sets and reps
             var seriesRepetitions = [
-                // ... (unchanged)
+                { Sets: 3, Reps: 15 },
+                { Sets: 3, Reps: 10 },
+                { Sets: 4, Reps: 12 },
+                { Sets: 3, Reps: 8 },
+                { Sets: 3, Reps: 30 },
+                { Sets: 4, Reps: 10 },
+                // Add more sets and reps as needed
             ];
 
             // Generate a random index for exercises
