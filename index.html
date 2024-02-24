@@ -8,10 +8,12 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 50px;
-            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzvdFqu0O1c5fW0nyf1iIxW-d5_oHiJzafGw&usqp=CAU); /* Replace with your image URL */
-            background-size: 1000px 600px;
+            margin: 0;
+            padding: 0;
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzvdFqu0O1c5fW0nyf1iIxW-d5_oHiJzafGw&usqp=CAU);
+            background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             color: black;
         }
 
@@ -59,7 +61,7 @@
                 "Leg Curl",
                 "Leg Extension",
                 "Biceps Curl",
-                "Push-ups",
+                "Chest Press", // Replaced "Dips" with "Chest Press"
                 "Tricep Dips",
                 "Pull-ups (if you have a sturdy horizontal bar)",
                 "Diamond Push-ups",
@@ -113,7 +115,7 @@
                 "Quadruped Leg Lifts",
                 // Add more exercises as needed
             ];
-// List of sets and reps
+            // List of sets and reps
             var seriesRepetitions = [
                 { Sets: 3, Reps: 15 },
                 { Sets: 3, Reps: 10 },
@@ -123,7 +125,7 @@
                 { Sets: 4, Reps: 10 },
                 // Add more sets and reps as needed
             ];
-            
+
             // Generate a random index for exercises
             var randomIndexExercises = Math.floor(Math.random() * exercises.length);
             // Generate a random index for sets and reps
