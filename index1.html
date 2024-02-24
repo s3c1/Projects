@@ -84,7 +84,7 @@
             <option value="NU">Nunavut</option>
             <option value="ON">Ontario</option>
             <option value="PE">Prince Edward Island</option>
-            <option value="QC">Quebec</option>
+            <option value="QC">Québec</option>
             <option value="SK">Saskatchewan</option>
             <option value="YT">Yukon</option>
         </select>
@@ -92,7 +92,9 @@
         <input type="number" id="income" name="income" placeholder="Enter your income" min="0" required>
         <label for="taxes">Income taxes paid (Federal)</label>
         <input type="number" id="taxes" name="taxes" placeholder="Enter your taxes" min="0" required>
-        <label for="other">Other income (incl. CERB)</label>
+        <label for="taxes">Income taxes paid (Provicial/Territorial)</label>
+        <input type="number" id="taxes" name="taxes" placeholder="Enter your taxes" min="0" required>
+        <label for="other">Other income </label>
         <input type="number" id="other" name="other" placeholder="Enter your other income" min="0" required>
         <label for="contribution">RRSP contribution</label>
         <input type="number" id="contribution" name="contribution" placeholder="Enter your contribution" min="0" required>
@@ -117,7 +119,7 @@
         var brackets = document.getElementById("brackets");
 
         // Define the URL of the tax table
-        var url = "https://www.bing.com/th?id=OIP.08WVuM3AGm_uwIbX2UlqlwHaEZ";
+        var url = "https://www.desjardins.com/ressources/pdf/table-impot-p-quebec-2023-f.pdf?resVer=1672849465000";
 
         // Define a function to fetch the tax table from the URL
         function fetchTaxTable(url, callback) {
