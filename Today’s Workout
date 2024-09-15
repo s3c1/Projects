@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Gym Exercise Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gym Exercise Generator</h1>
+    
+    <button onclick="generateExercise()">Generate Exercise</button>
+    
+    <p id="exerciseDisplay"></p>
+
+    <script>
+        function generateExercise() {
+            // List of exercises
+            var exercises = [
+                "Push-ups",
+                "Pull-ups",
+                "Squats",
+                "Deadlifts",
+                "Plank",
+                "Lunges",
+                // Add more exercises as needed
+            ];
+
+            // Generate a random index
+            var randomIndex = Math.floor(Math.random() * exercises.length);
+
+            // Display the randomly selected exercise
+            document.getElementById("exerciseDisplay").innerHTML = "Exercise: " + exercises[randomIndex];
+        }
+    </script>
+</body>
+</html>
